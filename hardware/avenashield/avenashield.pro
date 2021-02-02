@@ -1,4 +1,4 @@
-update=Fri 21 Feb 2020 12:07:31 PM EST
+update=Mon 09 Mar 2020 12:50:30 PM EDT
 version=1
 last_client=kicad
 [general]
@@ -25,7 +25,7 @@ ERC_TestSimilarLabels=1
 [pcbnew]
 version=1
 PageLayoutDescrFile=
-LastNetListRead=isoshield.net
+LastNetListRead=avenashield.net
 CopperLayerCount=4
 BoardThickness=1.6
 AllowMicroVias=0
@@ -75,7 +75,7 @@ CopperTextThickness=0.127
 CopperTextItalic=0
 CopperTextUpright=1
 EdgeCutLineWidth=0.0508
-CourtyardLineWidth=0.0508
+CourtyardLineWidth=0.05
 OthersLineWidth=0.1524
 OthersTextSizeV=0.8128
 OthersTextSizeH=0.8128
@@ -85,7 +85,7 @@ OthersTextUpright=1
 SolderMaskClearance=0.0508
 SolderMaskMinWidth=0.254
 SolderPasteClearance=0
-SolderPasteRatio=-0
+SolderPasteRatio=0
 [pcbnew/Layer.F.Cu]
 Name=F.Cu
 Type=2
