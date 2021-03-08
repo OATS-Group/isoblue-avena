@@ -105,3 +105,11 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+
+########
+# Rust #
+########
+debug/
+target/
+**/*.rs.bak

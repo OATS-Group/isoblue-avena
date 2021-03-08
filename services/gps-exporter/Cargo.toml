@@ -1,0 +1,30 @@
+[package]
+name = "gps-exporter"
+version = "0.1.0"
+authors = ["Andrew Balmos <abalmos@purdue.edu>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ansi_term = "0.12.1"
+anyhow = "1.0.38"
+chrono = "0.4.19"
+clap = "2.33.3"
+geo-types = "0.6.2"
+gpx = { git = "https://github.com/georust/gpx.git" }
+#shapefile = { git = "https://github.com/tmontaigu/shapefile-rs" }
+sqlx = { version = "0.5.1", features = [ "postgres", "runtime-tokio-rustls",
+"chrono" ] }
+tokio = { version = "1.2.0", features = [ "macros" ] }
+walkdir = "2.3.1"
+
+#[patch.'https://github.com/tmontaigu/shapefile-rs']
+#dbase = { path = "./dbase-rs" }
+
+#[patch.'https://github.com/tmontaigu/dbase-rs']
+#dbase = { path = "./dbase-rs" }
+
+[profile.release]
+opt-level = "s"
+lto = true
