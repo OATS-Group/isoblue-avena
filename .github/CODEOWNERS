@@ -2,7 +2,7 @@
 # This file defines the code owners for files in this repository
 # See documentation here: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners
 
-# Fabio Castilblanco is the leader of this project and will be the default 
+# Fabio Castilblanco is the leader of this project and will be the default
 # reviewer if no one else is assigned
 * @facastiblancor
 
@@ -47,3 +47,5 @@ services/can_watchdog @aaron97neu
 services/gps2tsdb     @aaron97neu
 services/oada_upload  @aaron97neu
 services/postgres     @aaron97neu
+
+services/cand @abalmos
