@@ -30,6 +30,7 @@ docs/hardware/lattepanda @aaron97neu
 
 # Fabio is responsible for the development of the shield and related hardware
 hardware @facastiblancor
+hardware/lattepanda-enclosure @ericpokeefe
 
 # Andrew intially created the installers, Aaron added isntallers for the Lattepanda
 # devices
