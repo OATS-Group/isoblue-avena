@@ -13,8 +13,9 @@ jobs:
           - oada_upload
           - cell_logger
           - can_watchdog
-          - can_logger  
+          - can_logger
           - socketcand
+          - j1939d
 
     runs-on: ubuntu-latest
 
@@ -38,7 +39,7 @@ jobs:
         run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: Cache docker layers
-        if: ${{ !env.ACT }}  # Awaiting ACT version after 0.2.17 for this feature
+        if: ${{ !env.ACT }} # Awaiting ACT version after 0.2.17 for this feature
         uses: actions/cache@v2.1.4
         id: cache
         with:
@@ -100,7 +101,6 @@ jobs:
           echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
           echo ${{ github.event.repository.license }}
-
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
