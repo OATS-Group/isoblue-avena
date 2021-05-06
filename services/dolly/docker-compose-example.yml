@@ -1,0 +1,50 @@
+version: "3"
+services:
+  ofelia:
+    image: mcuadros/ofelia:development
+    depends_on:
+      - dolly
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  dolly:
+#   image: isoblue/dolly:feature-dolly
+    build:
+      context: ../dolly/
+    restart: unless-stopped
+    environment:
+      # rclone config parameters from running `docker run --rm -it --network host rclone/rclone config`
+      # This shouldbe remplaced with just using the provided config file, however container-maintainer
+      # needs to be upgraded to allow it to pull more than just docker-compose files first
+      remote_name: 'ISOBlue_Dolly_Remote_Upload' # Avoid spaces
+      type: 'box'
+      box_sub_type: 'enterprise'
+      token: ''
+
+      # rclone upload config
+      bwlimit: '500k'
+      numcheckers: '2'
+      clvl: '0' # compression level
+      log_level: 'DEBUG'
+      # rclone does not appear to like spaces in its paths
+      local_path: '/data/'
+      remote_path: 'a/remote/path'
+ 
+      # Dolly specific settings
+      # override is used to override the config upon startup if one already exists. Use
+      # this with caution, this is a great way to invalidate tokens
+      override: '0'
+    volumes:
+      - /data/docker/volumes/container-maintainer_can_data/_data/can:/data/can:rw
+      - gps_exporter_data:/data/gps_exporter:rw
+#     - /home/avena/isoblue-avena/services/dolly/test-upload-folder/:/data/sample/:rw
+      - dolly_config:/config
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.dolly.schedule: "@every 1h"
+      ofelia.job-exec.dolly.command: "/go-dolly"
+      ofelia.job-exec.dolly.no-overlap: "true"
+volumes:
+  dolly_config:
+#  can_data:
+  gps_exporter_data:

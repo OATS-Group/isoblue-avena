@@ -1,0 +1,23 @@
+#!/bin/ash
+
+timestamp=`date +%Y/%m/%d-%H:%M:%S`
+echo "go-dolly: Called at $timestamp"
+
+config_path="/config/rclone/rclone.conf"
+
+echo -e "go-dolly: Using remote ${remote_name} of type ${type}/${box_sub_type}"
+echo -e "go-dolly: To upload data from ${local_path} to ${remote_path}"
+echo -e "go-dolly: Using ${numcheckers} checkers, a ${bwlimit} bandwidth limit, and ${clvl} compression level"
+
+if [ ! -f $config_path ] || [ "$override" == "1" ]
+then
+  echo "go-dolly: Creating new config file as it did not exist or the override variable was set"
+  mkdir -p /config/rclone
+  echo -en "[$remote_name]\ntype = ${type}\nbox_sub_type = ${box_sub_type}\ntoken = ${token}" > $config_path
+  override=0
+else
+  echo "go-dolly: Using existing config file"
+fi
+
+echo "go-dolly: Calling rclone"
+rclone copy --progress --local-no-check-updated --compress-level=$clvl --checkers=$numcheckers --bwlimit=$bwlimit --log-level $log_level $local_path $remote_name:$remote_path

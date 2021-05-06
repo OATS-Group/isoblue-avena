@@ -13,8 +13,9 @@ jobs:
           - oada_upload
           - cell_logger
           - can_watchdog
-          - can_logger  
+          - can_logger
           - socketcand
+          - dolly
 
     runs-on: ubuntu-latest
 
